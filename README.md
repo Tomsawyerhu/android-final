@@ -1,9 +1,12 @@
-# 仿抖音视频播放app
+# 仿抖音视频播放app 
+![](https://img.shields.io/badge/video-entertainment-brightgreen.svg?style=plastic)
+<br><br>
 
-##修改记录
+## 修改记录
 
  | 修改人员     | 修改日期       | 修改原因     | 版本号       |
  | ------------ | ------------ | ------------ | -------------- |
+ | Tomsawyerhu   |  2020.7.17  |  项目初始化   | 0.9.9         |
  
 
 ## 基本功能
