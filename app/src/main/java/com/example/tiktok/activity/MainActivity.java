@@ -1,4 +1,4 @@
-package com.example.tiktok.acticity;
+package com.example.tiktok.activity;
 
 import androidx.appcompat.app.AppCompatActivity;
 
