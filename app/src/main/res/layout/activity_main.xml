@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:clipChildren="false"
+    tools:context=".acticity.MainActivity">
+
+    <androidx.viewpager2.widget.ViewPager2
+        android:id="@+id/viewPager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/navigationBarLayout" />
+
+    <LinearLayout
+        android:id="@+id/navigationBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_alignParentBottom="true"
+        android:gravity="center"
+        android:paddingBottom="2dp"
+        android:orientation="horizontal">
+
+        <TextView
+            style="@style/item_navigation_bar_txt"
+            android:text="首页"
+            android:textStyle="bold" />
+
+        <TextView
+            style="@style/item_navigation_bar_txt"
+            android:text="同城" />
+
+        <View
+            android:layout_width="70dp"
+            android:layout_height="50dp"
+            android:background="@drawable/ic_add_box_black_24dp" />
+
+        <TextView
+            style="@style/item_navigation_bar_txt"
+            android:text="消息" />
+
+        <TextView
+            style="@style/item_navigation_bar_txt"
+            android:text="我" />
+    </LinearLayout>
+
+</RelativeLayout>
