@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 
 import com.example.tiktok.R;
 import com.example.tiktok.model.Video;
-import com.example.tiktok.widget.view.VideoPlayer;
+import com.example.tiktok.widget.media.VideoPlayer;
 
 import java.util.List;
 
