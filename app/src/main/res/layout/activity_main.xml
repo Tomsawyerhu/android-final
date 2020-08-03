@@ -24,11 +24,12 @@
 
         <TextView
             style="@style/item_navigation_bar_txt"
-            android:text="首页"
-            android:textStyle="bold" />
+            android:id="@+id/nav_tv_home"
+            android:text="首页" />
 
         <TextView
             style="@style/item_navigation_bar_txt"
+            android:id="@+id/nav_tv_city"
             android:text="同城" />
 
         <View
@@ -38,10 +39,12 @@
 
         <TextView
             style="@style/item_navigation_bar_txt"
+            android:id="@+id/nav_tv_msg"
             android:text="消息" />
 
         <TextView
             style="@style/item_navigation_bar_txt"
+            android:id="@+id/nav_tv_me"
             android:text="我" />
     </LinearLayout>
 
