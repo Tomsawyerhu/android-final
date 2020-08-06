@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_margin="20dp"
     tools:context=".fragment.VideoFragment">
 
 
-    <com.google.android.exoplayer2.ui.PlayerView
-        android:id="@+id/video_player"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="id: dahfhakjhsdk"/>
 
     <!--    <com.yunlei.douyinlike.widget.LikeLayout-->
     <!--        android:id="@+id/likeLayout"-->
