@@ -5,15 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
 import com.example.tiktok.R;
 import com.example.tiktok.model.Video;
 import com.example.tiktok.utils.VideoPlayerLoader;
 import com.example.tiktok.widget.media.VideoPlayerManager;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 
 /**
  * 视频轮播组件适配器
@@ -23,16 +23,16 @@ import androidx.recyclerview.widget.RecyclerView;
 public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAdapter.ViewHolder> {
 
     //是否是循环轮播
-    private boolean isLoop=true;
+    private boolean isLoop = true;
 
     private List<Video> dataList;
-    private int viewHolderCount=0;
+    private int viewHolderCount = 0;
 
     private Context context;
 
 
-    public VideoViewPagerAdapter(List<Video> list){
-        this.dataList=list;
+    public VideoViewPagerAdapter(List<Video> list) {
+        this.dataList = list;
     }
 
     public Context getContext() {
@@ -46,26 +46,26 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        Context context=parent.getContext();
-        View view=LayoutInflater.from(context).inflate(R.layout.view_video_player,parent,false);
-        ViewHolder viewHolder=new ViewHolder(view);
+        Context context = parent.getContext();
+        View view = LayoutInflater.from(context).inflate(R.layout.view_video_player, parent, false);
+        ViewHolder viewHolder = new ViewHolder(view);
         viewHolder.setIndex(this.viewHolderCount);
 
-        this.viewHolderCount+=1;
+        this.viewHolderCount += 1;
         return viewHolder;
 
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        Video video=dataList.get(this.isLoop?position%this.dataList.size():position);
+        Video video = dataList.get(isLoop() ? position % this.dataList.size() : position);
         holder.fillData(video);
 
     }
 
     @Override
     public int getItemCount() {
-        return this.isLoop?Integer.MAX_VALUE:this.dataList.size();
+        return this.isLoop ? Integer.MAX_VALUE : this.dataList.size();
     }
 
     public boolean isLoop() {
@@ -90,13 +90,12 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.videoPlayer=itemView;
+            this.videoPlayer = itemView;
         }
 
-        public void fillData(Video video){
-            //todo 将数据填充到控件上
-            VideoPlayerManager manager=new VideoPlayerManager(context);
-            VideoPlayerLoader loader=new VideoPlayerLoader(manager);
+        public void fillData(Video video) {
+            VideoPlayerManager manager = new VideoPlayerManager(context);
+            VideoPlayerLoader loader = new VideoPlayerLoader(manager);
             loader.setContext(context);
             loader.setView(videoPlayer);
             loader.setVideoUrl(video.feedUrl);
@@ -104,6 +103,8 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
             loader.setStarNum(video.likeCount);
             loader.setMsgNum(video.likeCount);
             loader.setShareNum(video.likeCount);
+            loader.setNickname(video.nickname);
+            loader.setDescription(video.description);
             loader.setIndex(this.index);
             loader.loadData();
             //System.out.println(video);

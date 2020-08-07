@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">TikTok</string>
+    <string name="blank_content">0</string>
 </resources>

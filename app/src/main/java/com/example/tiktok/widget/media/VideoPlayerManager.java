@@ -15,36 +15,38 @@ import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 
 public class VideoPlayerManager {
-    public static String DEFAULT_MEDIA_URI =
+    public static String playerUrl =
             "https://storage.googleapis.com/exoplayer-test-media-1/mkv/android-screens-lavf-56.36.100-aac-avc-main-1280x720.mkv";
 
-    private SimpleExoPlayer player;
+    public SimpleExoPlayer player;
+
     private Context context;
     private DataSource.Factory dataSourceFactory;
     private MediaSource mediaSource;
 
-    public VideoPlayerManager(Context context){
-        this.context=context;
+    public VideoPlayerManager(Context context) {
+        this.context = context;
+        //创建exoplayer播放器实例
         player = new SimpleExoPlayer.Builder(context).build();
     }
 
-    public SimpleExoPlayer getPlayer(){
+    public SimpleExoPlayer getPlayer() {
         return this.player;
     }
 
-    public void preparePlayer(){
-        dataSourceFactory=new DefaultDataSourceFactory(
+    public void preparePlayer() {
+        dataSourceFactory = new DefaultDataSourceFactory(
                 context, Util.getUserAgent(context, context.getString(R.string.app_name)));
         ExtractorsFactory extractorsFactory = new DefaultExtractorsFactory();
 
         //准备好media source
-        Uri uri=Uri.parse(DEFAULT_MEDIA_URI);
+        Uri uri = Uri.parse(playerUrl);
         mediaSource = new ExtractorMediaSource(uri,
                 dataSourceFactory, extractorsFactory, null, null);
     }
 
     public void initializePlayer() {
-        if(player!=null) {
+        if (player != null) {
             player.setRepeatMode(Player.REPEAT_MODE_ALL);
             player.prepare(mediaSource);
         }

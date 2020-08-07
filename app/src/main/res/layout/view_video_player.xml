@@ -7,7 +7,13 @@
     <com.google.android.exoplayer2.ui.PlayerView
         android:id="@+id/player_view"
         android:layout_height="match_parent"
-        android:layout_width="match_parent">
+        android:layout_width="match_parent"
+        android:keepScreenOn="true"
+        app:show_timeout="1000"
+        app:keep_content_on_player_reset="false"
+        app:surface_type="texture_view"
+        app:resize_mode="zoom"
+        app:show_buffering="never">
 
     </com.google.android.exoplayer2.ui.PlayerView>
 
@@ -18,8 +24,8 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:paddingRight="10dp"
-        android:paddingEnd="10dp">
+        android:layout_marginRight="10dp"
+        android:layout_marginEnd="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/bg_pic"
@@ -45,7 +51,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:textAlignment="center"
-            android:text="0"
+            android:text="@string/blank_content"
             android:textColor="#fff"
             android:layout_below="@id/star_button"
             android:gravity="center_horizontal" />
@@ -64,7 +70,7 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="30dp"
             android:textAlignment="center"
-            android:text="0"
+            android:text="@string/blank_content"
             android:textColor="#fff"
             android:layout_below="@id/message"
             android:gravity="center_horizontal" />
@@ -83,13 +89,34 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="100dp"
             android:textAlignment="center"
-            android:text="0"
+            android:text="@string/blank_content"
             android:textColor="#fff"
             android:layout_below="@id/share"
             android:gravity="center_horizontal" />
 
     </RelativeLayout>
 
-
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_alignParentBottom="true"
+        android:layout_marginLeft="10dp"
+        android:layout_marginBottom="50dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:textStyle="bold"
+            android:text="@string/blank_content"
+            android:textSize="20sp"
+            android:id="@+id/tv_name"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#fff"
+            android:text="@string/blank_content"
+            android:id="@+id/tv_des"/>
+    </LinearLayout>
 
 </RelativeLayout>
