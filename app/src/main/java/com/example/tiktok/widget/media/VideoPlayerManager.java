@@ -49,23 +49,4 @@ public class VideoPlayerManager {
             player.prepare(mediaSource);
         }
     }
-
-    public void play(){
-        if(player!=null){
-            player.setPlayWhenReady(true);
-        }
-    }
-
-    public void pause(){
-        if(player!=null){
-            player.setPlayWhenReady(false);
-        }
-    }
-
-    public void drop(){
-        if(player!=null){
-            player.release();
-        }
-        player=null;
-    }
 }

@@ -4,7 +4,7 @@ import android.os.Handler;
 import android.os.Message;
 import android.util.Log;
 
-import com.example.tiktok.model.Storage;
+import com.example.tiktok.memory.Storage;
 import com.example.tiktok.model.Video;
 
 import java.util.List;

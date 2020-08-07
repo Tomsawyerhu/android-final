@@ -5,7 +5,7 @@ import android.os.Handler;
 import android.os.Message;
 
 import com.example.tiktok.adapter.VideoViewPagerAdapter;
-import com.example.tiktok.model.Storage;
+import com.example.tiktok.memory.Storage;
 import com.example.tiktok.network.RetrofitService;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 

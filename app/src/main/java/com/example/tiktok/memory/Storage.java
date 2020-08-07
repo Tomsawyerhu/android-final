@@ -1,10 +1,14 @@
-package com.example.tiktok.model;
+package com.example.tiktok.memory;
 
+import com.example.tiktok.model.Video;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 内存类
+ */
 public class Storage {
     private static Storage storage=new Storage();
     private List<Video> videoList=new ArrayList<>();
