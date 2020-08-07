@@ -30,6 +30,7 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
 
     private Context context;
 
+
     public VideoViewPagerAdapter(List<Video> list){
         this.dataList=list;
     }
@@ -109,4 +110,6 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
         }
 
     }
+
+
 }

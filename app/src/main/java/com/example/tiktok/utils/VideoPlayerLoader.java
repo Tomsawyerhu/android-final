@@ -81,7 +81,9 @@ public class VideoPlayerLoader extends ViewLoader {
     }
 
     private String transformToStr(int num){
-        if(num>=1000&&num<100000){
+        if(num>=0&&num<1000){
+            return String.valueOf(num);
+        }else if(num>=1000&&num<100000){
             return num/1000+"k";
         }else{
             return num/10000+"w";

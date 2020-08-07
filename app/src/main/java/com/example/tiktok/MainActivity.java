@@ -1,13 +1,20 @@
 package com.example.tiktok;
 
+import android.animation.AnimatorSet;
+import android.animation.ObjectAnimator;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
+import android.view.MotionEvent;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
 
 import com.example.tiktok.adapter.VideoViewPagerAdapter;
 import com.example.tiktok.memory.Storage;
 import com.example.tiktok.network.RetrofitService;
 import com.google.android.exoplayer2.SimpleExoPlayer;
+
+import java.util.Date;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -16,8 +23,14 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class MainActivity extends AppCompatActivity {
+    private long lastClick=0;
+    private static final long INTERVAL=1000;
+
     @BindView(R.id.viewPager2)
     ViewPager2 viewPager2;
+
+    @BindView(R.id.relative_layout)
+    RelativeLayout relativeLayout;
 
     Handler handler=new Handler(){
         @Override
@@ -40,6 +53,45 @@ public class MainActivity extends AppCompatActivity {
         ButterKnife.bind(this);
 
         fetchVideos();
+    }
+
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        //监听快速点击事件
+        if(this.lastClick==0){
+            lastClick=new Date().getTime();
+        }else{
+            if(new Date().getTime()-lastClick<=INTERVAL){
+                triggerAnimation(ev.getRawX(),ev.getRawY());
+            }
+            lastClick=0;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
+
+
+    private void triggerAnimation(float x,float y){
+        System.out.println("触发快速点击事件");
+        ImageView heart=new ImageView(this);
+        heart.setImageResource(R.drawable.heart_on);
+
+        RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
+        params.leftMargin = (int) x - 100;
+        params.topMargin = (int) y - 100;
+
+        addContentView(heart,params);
+
+        //ObjectAnimator transY=ObjectAnimator.ofFloat(heart,"translationY",2000,5000);
+        ObjectAnimator scaleX=ObjectAnimator.ofFloat(heart,"scaleX",1,2);
+        ObjectAnimator scaleY=ObjectAnimator.ofFloat(heart,"scaleY",1,2);
+        ObjectAnimator opacity=ObjectAnimator.ofFloat(heart,"alpha",1f,0.7f,0f);
+        opacity.setDuration(2000);
+
+        AnimatorSet animatorSet = new AnimatorSet();
+        animatorSet.playTogether(scaleX,scaleY,opacity);
+        animatorSet.setDuration(2000);
+        animatorSet.start();
+        relativeLayout.removeView(heart);
     }
 
     private void fetchVideos(){

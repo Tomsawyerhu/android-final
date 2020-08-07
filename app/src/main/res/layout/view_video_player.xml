@@ -17,7 +17,9 @@
         android:gravity="bottom"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true">
+        android:layout_alignParentBottom="true"
+        android:paddingRight="10dp"
+        android:paddingEnd="10dp">
 
         <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/bg_pic"
