@@ -4,6 +4,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.tiktok.R;
+import com.example.tiktok.model.Storage;
 import com.example.tiktok.widget.media.VideoPlayerManager;
 import com.google.android.exoplayer2.SimpleExoPlayer;
 import com.google.android.exoplayer2.ui.PlayerView;
@@ -16,6 +17,7 @@ public class VideoPlayerLoader extends ViewLoader {
     private int starNum=0;
     private int msgNum=0;
     private int shareNum=0;
+    private int index=-1;
 
     private VideoPlayerManager videoPlayerManager;
 
@@ -45,6 +47,10 @@ public class VideoPlayerLoader extends ViewLoader {
         this.shareNum = shareNum;
     }
 
+    public void setIndex(int index) {
+        this.index = index;
+    }
+
     @Override
     public void loadData() {
         //加载头像
@@ -69,7 +75,8 @@ public class VideoPlayerLoader extends ViewLoader {
 
             videoPlayerManager.preparePlayer();
             videoPlayerManager.initializePlayer();
-            videoPlayerManager.play();
+            Storage.getStorage().savePlayers(this.index,player);
+            //videoPlayerManager.play();
         }
     }
 }

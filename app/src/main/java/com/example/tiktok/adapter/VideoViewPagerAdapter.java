@@ -103,6 +103,7 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
             loader.setStarNum(video.likeCount);
             loader.setMsgNum(video.likeCount);
             loader.setShareNum(video.likeCount);
+            loader.setIndex(this.index);
             loader.loadData();
             //System.out.println(video);
         }

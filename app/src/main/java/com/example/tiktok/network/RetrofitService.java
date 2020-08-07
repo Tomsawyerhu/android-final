@@ -1,6 +1,7 @@
 package com.example.tiktok.network;
 
 import android.os.Handler;
+import android.os.Message;
 import android.util.Log;
 
 import com.example.tiktok.model.Storage;
@@ -35,7 +36,11 @@ public class RetrofitService {
                 }
                 //提醒已获得视频列表
                 System.out.println(Storage.getStorage().getVideoList().size());
-                handler.sendEmptyMessage(1);
+
+                Message message=new Message();
+                message.what=1;
+                message.arg1=list!=null?list.size():0;
+                handler.sendMessage(message);
 
             }
 
