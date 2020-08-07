@@ -1,24 +1,35 @@
 package com.example.tiktok;
 
+import android.os.Bundle;
+import android.os.Handler;
+import android.os.Message;
+
+import com.example.tiktok.adapter.VideoViewPagerAdapter;
+import com.example.tiktok.model.Storage;
+import com.example.tiktok.network.RetrofitService;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.viewpager2.widget.ViewPager2;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-import android.os.Bundle;
-import android.widget.Adapter;
-
-import com.example.tiktok.R;
-import com.example.tiktok.adapter.VideoViewPagerAdapter;
-import com.example.tiktok.model.Video;
-
-import java.util.ArrayList;
-import java.util.List;
-
 public class MainActivity extends AppCompatActivity {
     @BindView(R.id.viewPager2)
     ViewPager2 viewPager2;
+
+    Handler handler=new Handler(){
+        @Override
+        public void handleMessage(@NonNull Message msg) {
+            super.handleMessage(msg);
+            switch (msg.what){
+                case 1:
+                    initViewPager();
+                    break;
+            }
+        }
+    };
+    RetrofitService retrofitService=new RetrofitService(handler);
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,7 +38,11 @@ public class MainActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
 
-        initViewPager();
+        fetchVideos();
+    }
+
+    private void fetchVideos(){
+        retrofitService.fetchVideos();
     }
 
 
@@ -35,9 +50,9 @@ public class MainActivity extends AppCompatActivity {
      * 初始化轮播组件
      */
     private void initViewPager(){
-        List<Video> list=new ArrayList<>();
-        list.add(new Video());
-        VideoViewPagerAdapter adapter=new VideoViewPagerAdapter(list);
+        VideoViewPagerAdapter adapter=new VideoViewPagerAdapter(Storage.getStorage().getVideoList());
+        adapter.setContext(this);
+        //System.out.println(Storage.getStorage().getVideoList().size());
         viewPager2.setAdapter(adapter);
 
         //禁止滚动true为可以滑动false为禁止

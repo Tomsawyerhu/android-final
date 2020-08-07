@@ -18,4 +18,16 @@ public class Video {
     public int likeCount;
     @SerializedName("avatar")
     public String avatar;
+
+    @Override
+    public String toString() {
+        return "Video{" +
+                "id='" + id + '\'' +
+                ", feedUrl='" + feedUrl + '\'' +
+                ", nickname='" + nickname + '\'' +
+                ", description='" + description + '\'' +
+                ", likeCount=" + likeCount +
+                ", avatar='" + avatar + '\'' +
+                '}';
+    }
 }

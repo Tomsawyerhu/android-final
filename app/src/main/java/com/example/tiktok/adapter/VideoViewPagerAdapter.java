@@ -7,7 +7,8 @@ import android.view.ViewGroup;
 
 import com.example.tiktok.R;
 import com.example.tiktok.model.Video;
-import com.example.tiktok.widget.media.VideoPlayer;
+import com.example.tiktok.utils.VideoPlayerLoader;
+import com.example.tiktok.widget.media.VideoPlayerManager;
 
 import java.util.List;
 
@@ -27,8 +28,18 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
     private List<Video> dataList;
     private int viewHolderCount=0;
 
+    private Context context;
+
     public VideoViewPagerAdapter(List<Video> list){
         this.dataList=list;
+    }
+
+    public Context getContext() {
+        return context;
+    }
+
+    public void setContext(Context context) {
+        this.context = context;
     }
 
     @NonNull
@@ -48,6 +59,7 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Video video=dataList.get(this.isLoop?position%this.dataList.size():position);
         holder.fillData(video);
+
     }
 
     @Override
@@ -65,7 +77,7 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
 
     class ViewHolder extends RecyclerView.ViewHolder {
         private int index;
-        private VideoPlayer videoPlayer;
+        private View videoPlayer;
 
         public int getIndex() {
             return index;
@@ -77,11 +89,23 @@ public class VideoViewPagerAdapter extends RecyclerView.Adapter<VideoViewPagerAd
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            this.videoPlayer=(VideoPlayer)itemView;
+            this.videoPlayer=itemView;
         }
 
         public void fillData(Video video){
             //todo 将数据填充到控件上
+            VideoPlayerManager manager=new VideoPlayerManager(context);
+            VideoPlayerLoader loader=new VideoPlayerLoader(manager);
+            loader.setContext(context);
+            loader.setView(videoPlayer);
+            loader.setVideoUrl(video.feedUrl);
+            loader.setPicUrl(video.avatar);
+            loader.setStarNum(video.likeCount);
+            loader.setMsgNum(video.likeCount);
+            loader.setShareNum(video.likeCount);
+            loader.loadData();
+            //System.out.println(video);
         }
+
     }
 }
